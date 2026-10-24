@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070b16">
+  <title>THENUWA XMD — Control Panel</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#"><span class="brand-icon">TX</span><span><b>THENUWA <em>XMD</em></b><small>WHATSAPP CONTROL CENTER</small></span></a>
+      <div class="live-pill"><span class="dot" id="headerDot"></span><span id="headerStatus">OFFLINE</span></div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span class="spark">✦</span> PERSONAL BOT DASHBOARD</div>
+      <h1>Your bot.<br><span>Your rules.</span></h1>
+      <p>Connect WhatsApp, manage commands, and monitor your bot from one clean dashboard.</p>
+      <div class="hero-actions"><button class="btn primary" id="heroConnect">Connect WhatsApp <span>↗</span></button><a class="btn ghost" href="#commands">Explore commands ↓</a></div>
+      <div class="hero-orbit"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit-core">TX</div><span class="orbit-tag tag-a">AI READY</span><span class="orbit-tag tag-b">XMD CORE</span></div>
+    </section>
+
+    <section id="loginCard" class="panel login-panel">
+      <div class="section-heading"><div><span class="kicker">ADMIN ACCESS</span><h2>Sign in to your panel</h2></div><span class="lock">⌑</span></div>
+      <p class="muted">Use the admin password configured in your local <code>.env</code> file.</p>
+      <form id="loginForm" class="login-form"><input id="password" type="password" placeholder="Admin password" autocomplete="current-password" required><button class="btn primary" type="submit">Sign in <span>→</span></button></form>
+      <p class="notice" id="loginNotice" role="status"></p>
+    </section>
+
+    <div id="dashboard" hidden>
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>CONNECTION</span><span class="stat-symbol">◉</span></div><strong id="statConnection">Offline</strong><small id="statUptime">Uptime 0s</small></article>
+        <article class="stat-card"><div class="stat-top"><span>MESSAGES IN</span><span class="stat-symbol">↓</span></div><strong id="statIn">0</strong><small>Received by bot</small></article>
+        <article class="stat-card"><div class="stat-top"><span>MESSAGES OUT</span><span class="stat-symbol">↑</span></div><strong id="statOut">0</strong><small>Sent by bot</small></article>
+        <article class="stat-card"><div class="stat-top"><span>COMMANDS</span><span class="stat-symbol">⌘</span></div><strong id="statCommands">0</strong><small>Commands processed</small></article>
+      </section>
+
+      <section id="connect" class="panel connect-panel">
+        <div class="section-heading"><div><span class="kicker">WHATSAPP SESSION</span><h2>Connect your device</h2></div><span class="badge" id="statusBadge">DISCONNECTED</span></div>
+        <p class="muted">Start the local bot server, then connect by QR or WhatsApp pairing code.</p>
+        <div class="connect-layout">
+          <div class="connect-controls">
+            <button class="btn primary wide" id="startBtn">Start connection</button>
+            <div class="divider-label"><span>OR USE PHONE NUMBER</span></div>
+            <label for="phone">WhatsApp number with country code</label>
+            <input id="phone" inputmode="numeric" placeholder="e.g. 94771234567">
+            <button class="btn secondary wide" id="pairBtn">Generate pairing code</button>
+            <div class="pair-code" id="pairCode" hidden></div>
+            <p class="small muted">Enter digits only. Never share your pairing code with anyone.</p>
+            <button class="btn danger wide" id="disconnectBtn">Disconnect session</button>
+          </div>
+          <div class="qr-area"><div class="qr-frame" id="qrFrame"><div class="qr-placeholder"><span>▦</span><b>QR code will appear here</b><small>Start connection to begin</small></div></div><div class="qr-caption" id="qrCaption">Waiting for connection</div></div>
+        </div>
+        <p class="notice" id="connectNotice" role="status"></p>
+      </section>
+
+      <section id="commands" class="panel">
+        <div class="section-heading"><div><span class="kicker">COMMAND LIBRARY</span><h2>Commands menu</h2></div><span class="count" id="commandCount">05 COMMANDS</span></div>
+        <div class="command-grid" id="commandGrid"></div>
+      </section>
+
+      <section class="panel ai-panel">
+        <div class="section-heading"><div><span class="kicker">AI PLAYGROUND</span><h2>Test AI chat</h2></div><span class="ai-badge">✦ AI</span></div>
+        <p class="muted">Optional: configure an OpenAI API key in <code>.env</code>. Your key stays on the server.</p>
+        <form id="aiForm"><textarea id="aiPrompt" rows="3" placeholder="Ask something to test your AI setup…"></textarea><button class="btn primary" type="submit">Send test message <span>→</span></button></form>
+        <pre id="aiAnswer" class="ai-answer" hidden></pre>
+      </section>
+      <footer class="dashboard-footer"><span>THENUWA XMD <span class="muted">· Local dashboard</span></span><button class="text-button" id="logoutBtn">Sign out</button></footer>
+    </div>
+    <footer class="site-footer"><span>© THENUWA XMD</span><span>BUILT FOR YOUR OWN BOT <span class="spark">✦</span></span></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/socket.io/socket.io.js"></script><script src="/app.js"></script>
+</body></html>
