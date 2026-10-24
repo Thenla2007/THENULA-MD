@@ -1,0 +1,22 @@
+{
+  "name": "thenuwa-xmd",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local WhatsApp bot dashboard for THENUWA XMD",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js"
+  },
+  "engines": { "node": ">=20.0.0" },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "openai": "^4.77.0",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1"
+  }
+}
